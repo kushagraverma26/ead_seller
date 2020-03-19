@@ -1,0 +1,27 @@
+{
+  "name": "ead_seller",
+  "version": "1.0.0",
+  "description": "Seller's portal. Part of EAD project.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kushagraverma26/ead_seller.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kushagraverma26/ead_seller/issues"
+  },
+  "homepage": "https://github.com/kushagraverma26/ead_seller#readme",
+  "dependencies": {
+    "bcrypt": "^4.0.1",
+    "bcryptjs": "^2.4.3",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.3",
+    "nodemon": "^2.0.2"
+  }
+}
