@@ -9,6 +9,7 @@ var posting = new Schema({
         type: Schema.Types.ObjectId, ref: 'Sellers', required: true
     },
     cancellable: {type: Boolean, default: true},
+    isPicked: {type: Boolean, default: false},
     createdDate: { type: Date, default: Date.now }
 })
 
