@@ -13,6 +13,7 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 
 
 var authRoutes = require('./routes/auth');
+var postingRoutes = require('./routes/postings');
 
 
 
@@ -24,11 +25,13 @@ app.use((req,res, next) => {
   });
 
 
-app.use("/auth",authRoutes)
 
 app.get("/",(req,res)=>{
   res.send("<h1>EAD Home</h1>")
 })
+
+app.use("/auth",authRoutes);
+app.use("/postings",postingRoutes);
 
 
 mongoose.connect("mongodb+srv://kushagra:kushagra@eadseller-qpo9h.mongodb.net/test?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true });

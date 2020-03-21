@@ -6,7 +6,6 @@ module.exports = function (token) {
     jwt.verify(token, config.secret, (err, decoded) => {
       if (err)
         reject(err);
-      //console.log("Token = " + token + "\nID = "+ decoded.id);
       resolve(decoded.id);
     })
   })
