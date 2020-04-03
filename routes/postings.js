@@ -29,15 +29,16 @@ router.post("/", sellerValidate, (req, res) => {
 })
 
 
-router.delete("/", sellerValidate, (req, res) => {
-  console.log(req.body._id);
-  postings.findByIdAndDelete(req.body.id).then((posting) => {
+router.delete("/:id", sellerValidate, (req, res) => {
+  console.log("esxdrtfyguhijrctfvgybhn");
+  var id = req.params.id;
+  console.log(id);
+  postings.findByIdAndDelete(id).then((posting) => {
     res.send("Deleted " + posting.name)
   }).catch((err) => {
     res.status(500).send("DB error")
   })
 })
-
 
 
 
