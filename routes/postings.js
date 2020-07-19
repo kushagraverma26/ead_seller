@@ -40,6 +40,28 @@ router.delete("/:id", sellerValidate, (req, res) => {
   })
 })
 
+router.post("/noncancellable", sellerValidate, (req,res) => {
+  postings.findByIdAndUpdate(req.query.id, {$set: {cancellable : false}}, {new:true}, function(err,posting){
+    if(err){
+      res.status(500).send("DB error")
+    }
+    else{
+      res.send(posting)
+    }
+  })
+})
+
+
+router.post("/picked", sellerValidate, (req,res) => {
+  postings.findByIdAndUpdate(req.query.id, {$set: {isPicked : true}}, {new:true}, function(err,posting){
+    if(err){
+      res.status(500).send("DB error")
+    }
+    else{
+      res.send(posting)
+    }
+  })
+})
 
 
 function sellerValidate(req, res, next) {

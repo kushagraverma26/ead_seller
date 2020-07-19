@@ -27,14 +27,14 @@ app.use((req,res, next) => {
 
 
 app.get("/",(req,res)=>{
-  res.send("<h1>EAD Home</h1>")
+  res.send("<h1>EAD Seller Home</h1>")
 })
 
 app.use("/auth",authRoutes);
 app.use("/postings",postingRoutes);
 
 
-mongoose.connect("mongodb+srv://kushagra:kushagra@eadseller-qpo9h.mongodb.net/test?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect("", {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
