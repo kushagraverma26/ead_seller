@@ -1,9 +1,10 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-
 var posting = new Schema({
-    name: { type: String, required: true},
-    category: { type: String, required: true, enum: ["meats", "dairy", "vegetables", "fruits"] },
+    item : {
+        name: { type: String, required: true},
+        defaultPrice: { type: Number, required: true},
+    },
     quantity: { type: Number, required: true},
     createdBy: {
         type: Schema.Types.ObjectId, ref: 'Sellers', required: true

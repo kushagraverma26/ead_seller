@@ -15,8 +15,7 @@ router.get("/",sellerValidate,(req,res)=>{
 
 router.post("/", sellerValidate, (req, res) => {
   var posting = new postings({
-    name: req.body.name,
-    category: req.body.category,
+    item: req.body.item,
     quantity: req.body.quantity,
     createdBy: req.body.userId
   })
@@ -30,9 +29,7 @@ router.post("/", sellerValidate, (req, res) => {
 
 
 router.delete("/:id", sellerValidate, (req, res) => {
-  console.log("esxdrtfyguhijrctfvgybhn");
   var id = req.params.id;
-  console.log(id);
   postings.findByIdAndDelete(id).then((posting) => {
     res.send("Deleted " + posting.name)
   }).catch((err) => {

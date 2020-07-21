@@ -14,7 +14,7 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 
 var authRoutes = require('./routes/auth');
 var postingRoutes = require('./routes/postings');
-
+var itemRoutes = require('./routes/items')
 
 
 
@@ -32,6 +32,7 @@ app.get("/",(req,res)=>{
 
 app.use("/auth",authRoutes);
 app.use("/postings",postingRoutes);
+app.use("/items", itemRoutes);
 
 
 mongoose.connect("", {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
