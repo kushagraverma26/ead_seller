@@ -4,14 +4,31 @@ var postings = require('../models/posting');
 var sellers = require('../models/seller');
 var router = express.Router()
 
-
-router.get("/",sellerValidate,(req,res)=>{
+//For Flutter Application
+router.get("/allPostings", (req,res)=>{
   postings.find(req.query).then((postings)=>{
     res.send(postings)
   }).catch((err)=>{
     res.status(400).send("Bad Request")
   })
 })
+
+//For React App
+router.get("/myPostings",sellerValidate,(req,res)=>{
+  tokenToId(req.get("token")).then((id) => {
+    req.query['createdBy'] = id
+    postings.find(req.query).then((postings)=>{
+      res.send(postings)
+    }).catch((err)=>{
+      res.status(400).send("Bad Request")
+    })
+  }).catch((err) =>{
+    res.status(400).send("Bad Request")
+  })
+})
+
+
+
 
 router.post("/", sellerValidate, (req, res) => {
   var posting = new postings({

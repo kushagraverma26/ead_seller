@@ -5,6 +5,7 @@ const config = require('../config/secret');
 var sellers = require('../models/seller');
 var router = express.Router()
 
+
 router.post("/registerSeller", (req, res) => {
   var hashedPassword = bcrypt.hashSync(req.body.password, 8);
   var seller = new sellers({
@@ -32,7 +33,7 @@ router.post("/sellerLogin", (req, res) => {
     else {
       if (bcrypt.compareSync(req.body.password, seller.password)) {
         var token = jwt.sign({ id: seller._id }, config.secret, { expiresIn: 86400 });
-        res.send({ "token": token })
+        res.send([{"id": seller._id, "firstName" : seller.firstName}, { "token": token }])
       }
       else res.status(403).send("Auth Error")
     }
