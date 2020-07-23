@@ -37,7 +37,7 @@ app.use("/items", itemRoutes);
 app.use("/sellers", sellerRoutes);
 
 
-mongoose.connect("mongodb+srv://kushagra:kushagra@eadseller-qpo9h.mongodb.net/test?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
+mongoose.connect("", {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
