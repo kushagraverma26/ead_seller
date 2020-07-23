@@ -18,9 +18,6 @@ var seller = new Schema({
     phone: {
         type: Number, required: true
     },
-    wallet: {
-        type: Number, default: 100
-    },
     location: {
         lat: {
             type: Number, required: true

@@ -3,6 +3,7 @@ var Schema = mongoose.Schema;
 var posting = new Schema({
     item : {
         name: { type: String, required: true},
+        category: { type: String, required: true, enum: ["meats", "dairy", "vegetables", "fruits"]},
         defaultPrice: { type: Number, required: true},
     },
     quantity: { type: Number, required: true},
@@ -11,6 +12,7 @@ var posting = new Schema({
     },
     cancellable: {type: Boolean, default: true},
     isPicked: {type: Boolean, default: false},
+    amountReceived: {type:Number, default: 0},
     createdDate: { type: Date, default: Date.now }
 })
 

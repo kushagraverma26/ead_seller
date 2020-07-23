@@ -65,11 +65,12 @@ router.post("/noncancellable", sellerValidate, (req,res) => {
   })
 })
 
-
-router.post("/picked", sellerValidate, (req,res) => {
-  postings.findByIdAndUpdate(req.query.id, {$set: {isPicked : true}}, {new:true}, function(err,posting){
+//For flutter applicaation
+//marks as picked and updates amount received
+router.post("/picked", (req,res) => {
+  postings.findByIdAndUpdate(req.body.id, {$set: {isPicked : true, amontReceived: req.body.amount}}, {new:true}, function(err,posting){
     if(err){
-      res.status(500).send("DB error")
+      res.status(500).send("DB error in updating")
     }
     else{
       res.send(posting)

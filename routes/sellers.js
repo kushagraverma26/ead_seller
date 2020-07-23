@@ -4,6 +4,17 @@ var sellers = require('../models/seller');
 var router = express.Router()
 
 
+
+//For Flutter Application
+router.get("/sellerDetails", (req,res)=>{
+  sellers.find(req.query).then((seller)=>{
+    res.send(seller)
+  }).catch((err)=>{
+    res.status(400).send("Bad Request")
+  })
+})
+
+
 router.get("/myProfile",sellerValidate,(req,res)=>{
   tokenToId(req.get("token")).then((id) => {
     req.query['_id'] = id
