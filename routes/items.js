@@ -3,6 +3,8 @@ const tokenToId = require("../helpers/tokenToId")
 var items = require('../models/item');
 var router = express.Router()
 
+
+//Get list of global items API
 router.get("/", (req,res) => {
     items.find(req.query).then((items) => {
         res.send(items)
@@ -11,6 +13,8 @@ router.get("/", (req,res) => {
     })
 })
 
+
+//Add item API
 router.post("/add", (req, res) => {
     var item = new items({
       name: req.body.name,
@@ -26,7 +30,7 @@ router.post("/add", (req, res) => {
     })
 })
 
-
+//Delete item API
 router.delete("/:id", (req, res) => {
     var id = req.params.id;
     items.findByIdAndDelete(id).then((item) => {
@@ -36,6 +40,7 @@ router.delete("/:id", (req, res) => {
     })
 })
 
+//Update default price API
 router.post("/updateDefaultPrice", (req,res) => {
     items.findByIdAndUpdate(req.query.id, {$set: {defaultPrice : req.body.newPrice}}, {new:true}, function(err,Item){
       if(err){

@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+//Schema of Global Items
 var item = new Schema({
     name: { type: String, required: true, unique: true},
     category: { type: String, required: true, enum: ["meats", "dairy", "vegetables", "fruits"]},

@@ -5,7 +5,7 @@ const config = require('../config/secret');
 var sellers = require('../models/seller');
 var router = express.Router()
 
-
+//Seller registration API
 router.post("/registerSeller", (req, res) => {
   var hashedPassword = bcrypt.hashSync(req.body.password, 8);
   var seller = new sellers({
@@ -26,6 +26,8 @@ router.post("/registerSeller", (req, res) => {
   })
 })
 
+
+//Seller Login API
 router.post("/sellerLogin", (req, res) => {
   sellers.findOne({ email: req.body.email }, (err, seller) => {
     if (err) res.status(500).send("There has been an error")

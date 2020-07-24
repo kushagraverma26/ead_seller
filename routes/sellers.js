@@ -6,6 +6,7 @@ var router = express.Router()
 
 
 //For Flutter Application
+// API to get the seller details
 router.get("/sellerDetails", (req,res)=>{
   sellers.find(req.query).then((seller)=>{
     res.send(seller)
@@ -15,6 +16,7 @@ router.get("/sellerDetails", (req,res)=>{
 })
 
 
+// Get profile API for the React Application
 router.get("/myProfile",sellerValidate,(req,res)=>{
   tokenToId(req.get("token")).then((id) => {
     req.query['_id'] = id
@@ -29,6 +31,7 @@ router.get("/myProfile",sellerValidate,(req,res)=>{
 })
 
 
+//Token validator
 function sellerValidate(req, res, next) {
     tokenToId(req.get("token")).then((id) => {
       req.body.userId = id;

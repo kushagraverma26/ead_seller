@@ -1,5 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+
+//Schema of postings
 var posting = new Schema({
     item : {
         name: { type: String, required: true},

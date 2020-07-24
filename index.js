@@ -2,7 +2,7 @@ const express = require('express');
 var mongoose = require('mongoose');
 bodyParser = require('body-parser');
 const app = express();
-const port = 3000;
+const port = 3000;//Port Number
 
 
 
@@ -12,6 +12,7 @@ app.use(bodyParser.text());
 app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 
 
+//Routes
 var authRoutes = require('./routes/auth');
 var postingRoutes = require('./routes/postings');
 var itemRoutes = require('./routes/items');
@@ -23,10 +24,10 @@ app.use((req,res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', '*');
     next();
-  });
+});
 
 
-
+//Home API
 app.get("/",(req,res)=>{
   res.send("<h1>EAD Seller Home</h1>")
 })
@@ -36,8 +37,8 @@ app.use("/postings",postingRoutes);
 app.use("/items", itemRoutes);
 app.use("/sellers", sellerRoutes);
 
-
-mongoose.connect("mongodb+srv://kushagra:kushagra@eadseller-qpo9h.mongodb.net/test?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
+//Database connection
+mongoose.connect("", {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
