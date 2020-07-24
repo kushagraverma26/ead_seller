@@ -7,10 +7,10 @@ var router = express.Router()
 
 //All postings API
 //For Flutter Application
-router.get("/allPostings", (req,res)=>{
-  postings.find(req.query).then((postings)=>{
+router.get("/allPostings", (req, res) => {
+  postings.find(req.query).then((postings) => {
     res.send(postings)
-  }).catch((err)=>{
+  }).catch((err) => {
     res.status(400).send("Bad Request")
   })
 })
@@ -18,15 +18,15 @@ router.get("/allPostings", (req,res)=>{
 
 //Get postings for the current user API
 //For React App
-router.get("/myPostings",sellerValidate,(req,res)=>{
+router.get("/myPostings", sellerValidate, (req, res) => {
   tokenToId(req.get("token")).then((id) => {
     req.query['createdBy'] = id
-    postings.find(req.query).then((postings)=>{
+    postings.find(req.query).then((postings) => {
       res.send(postings)
-    }).catch((err)=>{
+    }).catch((err) => {
       res.status(400).send("Bad Request")
     })
-  }).catch((err) =>{
+  }).catch((err) => {
     res.status(400).send("Bad Request")
   })
 })
@@ -60,12 +60,12 @@ router.delete("/:id", sellerValidate, (req, res) => {
 })
 
 //API to mark posting as non cancellable
-router.post("/noncancellable", sellerValidate, (req,res) => {
-  postings.findByIdAndUpdate(req.query.id, {$set: {cancellable : false}}, {new:true}, function(err,posting){
-    if(err){
+router.post("/noncancellable", sellerValidate, (req, res) => {
+  postings.findByIdAndUpdate(req.query.id, { $set: { cancellable: false } }, { new: true }, function (err, posting) {
+    if (err) {
       res.status(500).send("DB error")
     }
-    else{
+    else {
       res.send(posting)
     }
   })
@@ -73,12 +73,12 @@ router.post("/noncancellable", sellerValidate, (req,res) => {
 
 //For flutter applicaation
 //marks as picked and updates amount received
-router.post("/picked", (req,res) => {
-  postings.findByIdAndUpdate(req.body.id, {$set: {isPicked : true, amountReceived: req.body.amount}}, {new:true}, function(err,posting){
-    if(err){
+router.post("/picked", (req, res) => {
+  postings.findByIdAndUpdate(req.body.id, { $set: { isPicked: true, amountReceived: req.body.amount } }, { new: true }, function (err, posting) {
+    if (err) {
       res.status(500).send("DB error in updating")
     }
-    else{
+    else {
       console.log(posting);
       res.send(posting)
     }

@@ -7,25 +7,25 @@ var router = express.Router()
 
 //For Flutter Application
 // API to get the seller details
-router.get("/sellerDetails", (req,res)=>{
-  sellers.find(req.query).then((seller)=>{
+router.get("/sellerDetails", (req, res) => {
+  sellers.find(req.query).then((seller) => {
     res.send(seller)
-  }).catch((err)=>{
+  }).catch((err) => {
     res.status(400).send("Bad Request")
   })
 })
 
 
 // Get profile API for the React Application
-router.get("/myProfile",sellerValidate,(req,res)=>{
+router.get("/myProfile", sellerValidate, (req, res) => {
   tokenToId(req.get("token")).then((id) => {
     req.query['_id'] = id
-    sellers.find(req.query).then((seller)=>{
+    sellers.find(req.query).then((seller) => {
       res.send(seller)
-    }).catch((err)=>{
+    }).catch((err) => {
       res.status(400).send("Bad Request")
     })
-  }).catch((err) =>{
+  }).catch((err) => {
     res.status(400).send("Bad Request")
   })
 })
@@ -33,19 +33,19 @@ router.get("/myProfile",sellerValidate,(req,res)=>{
 
 //Token validator
 function sellerValidate(req, res, next) {
-    tokenToId(req.get("token")).then((id) => {
-      req.body.userId = id;
-      sellers.findById(id).then((seller) => {
-        if (seller) {
-          next();
-        }
-      }).catch((err) => {
-        res.status(500).send("DB Error")
-      })
-    }).catch((err) => { res.status(403).send("Token Error") })
-  
+  tokenToId(req.get("token")).then((id) => {
+    req.body.userId = id;
+    sellers.findById(id).then((seller) => {
+      if (seller) {
+        next();
+      }
+    }).catch((err) => {
+      res.status(500).send("DB Error")
+    })
+  }).catch((err) => { res.status(403).send("Token Error") })
+
 }
-  
-  
+
+
 
 module.exports = router

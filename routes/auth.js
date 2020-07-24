@@ -35,7 +35,7 @@ router.post("/sellerLogin", (req, res) => {
     else {
       if (bcrypt.compareSync(req.body.password, seller.password)) {
         var token = jwt.sign({ id: seller._id }, config.secret, { expiresIn: 86400 });
-        res.send([{"id": seller._id, "firstName" : seller.firstName}, { "token": token }])
+        res.send([{ "id": seller._id, "firstName": seller.firstName }, { "token": token }])
       }
       else res.status(403).send("Auth Error")
     }
